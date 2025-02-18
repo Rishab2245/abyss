@@ -1,45 +1,54 @@
 
-function gsapAnimation(){
-   
-    var tl = gsap.timeline();
-    tl.from('.line h1',{
-      y:150,
-      stagger:0.25,
-      duration:0.6,
-      delay:0.5
-    })
-    tl.from('.line1-part1  ',{
-      opacity:0,
-      onStart:function(){
-        const countdown = document.querySelector(".line1-part1 h5");
-        let interval = setInterval(() => {
-          countdown.textContent = parseInt(countdown.textContent) + 1;
-          if(countdown.textContent == 100){
-           clearInterval(interval);
-          }
-        }, 33);
-      }
-    });
-    tl.to(".line h2",{
-      animationName:"anime",
-      // delay:2,
-      opacity:1,
-    })
-    tl.to("#loader",{
-      opacity:0,
-      duration:0.4,
-      delay:3.2
-    })
-    tl.from("#page1",{
-      delay:0.2,
-      y:1600,
-      opacity:0,
-      duration:1,
-      ease:"power4.inout"
-    })
-    tl.to("#loader",{
-      display:"none"
-    })
+  function loadingAnimation(){
+    
+      var tl = gsap.timeline();
+      tl.from('.line h1 , .line h3',{
+        y:150,
+        stagger:0.25,
+        duration:0.6,
+        delay:0.5
+      })
+      tl.from('.line1-part1  ',{
+        opacity:0,
+        onStart:function(){
+          const countdown = document.querySelector(".line1-part1 h5");
+          let interval = setInterval(() => {
+            countdown.textContent = parseInt(countdown.textContent) + 1;
+            if(countdown.textContent == 100){
+            clearInterval(interval);
+            }
+          }, 33);
+        }
+      });
+      tl.to(".line h2",{
+        animationName:"anime",
+        // delay:2,
+        opacity:1,
+      })
+      tl.to("#loader",{
+        opacity:0,
+        duration:0.4,
+        // delay:3.2
+        delay:0
+
+      })
+      tl.from("#page1",{
+        delay:0.2,
+        y:1600,
+        duration:0.6,
+        ease:"power4.inout"
+      })
+      tl.to("#loader",{
+        display:"none"
+      })
+      tl.from('#nav',{
+        opacity:0,
+      })
+      tl.from(".hero h1",{
+        y:500,
+        stagger:0.2,
+        duration:0.6,
+      })
 
   }
 
@@ -80,6 +89,19 @@ function gsapAnimation(){
   
   }
 
+  function curserAnimation(){
+    document.addEventListener('mousemove',function(dets){
+      gsap.to("#crsr",{
+        x:dets.x,
+        y:dets.y,
+      })
+    })
+
+    Shery.makeMagnet("#nav-part2 h4");
+
+  }
+
   
   locoScroll();
-  gsapAnimation();
+  loadingAnimation();
+  curserAnimation();  
